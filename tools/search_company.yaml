@@ -1,0 +1,570 @@
+identity:
+  name: search_company
+  author: dataforb2b
+  label:
+    en_US: Search Companies
+description:
+  human:
+    en_US: Search companies. Build conditions with the filter slots (column + operator + value), combined with AND or OR.
+  llm: Search B2B companies using up to 5 filter slots; each slot is a column + operator + value, combined with the match logic (AND/OR). Use advanced_filters for nested logic.
+parameters:
+  - name: filter_1_column
+    type: select
+    required: false
+    options:
+      - value: "name"
+        label: {en_US: "Name"}
+      - value: "keyword"
+        label: {en_US: "Keyword"}
+      - value: "domain"
+        label: {en_US: "Domain"}
+      - value: "universal_name"
+        label: {en_US: "Universal name"}
+      - value: "tagline"
+        label: {en_US: "Tagline"}
+      - value: "description"
+        label: {en_US: "Description"}
+      - value: "industry"
+        label: {en_US: "Industry"}
+      - value: "category"
+        label: {en_US: "Category"}
+      - value: "employee_count"
+        label: {en_US: "Employee count / range"}
+      - value: "country_iso_code"
+        label: {en_US: "HQ country (ISO-2)"}
+      - value: "city"
+        label: {en_US: "HQ city"}
+      - value: "region"
+        label: {en_US: "HQ region/state"}
+      - value: "office_country"
+        label: {en_US: "Office country (ISO-2)"}
+      - value: "office_city"
+        label: {en_US: "Office city"}
+      - value: "office_region"
+        label: {en_US: "Office region"}
+      - value: "founded_year"
+        label: {en_US: "Founded year"}
+      - value: "company_type"
+        label: {en_US: "Company type"}
+      - value: "page_verified"
+        label: {en_US: "Page verified"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "employee_growth_1m"
+        label: {en_US: "Employee growth 1m (%)"}
+      - value: "employee_growth_6m"
+        label: {en_US: "Employee growth 6m (%)"}
+      - value: "employee_growth_12m"
+        label: {en_US: "Employee growth 12m (%)"}
+      - value: "recent_hires_count"
+        label: {en_US: "Recent hires count"}
+      - value: "funding_stage_normalized"
+        label: {en_US: "Funding stage"}
+      - value: "has_funding"
+        label: {en_US: "Has funding"}
+      - value: "last_funding_amount_usd"
+        label: {en_US: "Last funding amount (USD)"}
+      - value: "last_funding_date"
+        label: {en_US: "Last funding date"}
+    label:
+      en_US: "Filter 1 — column"
+    human_description:
+      en_US: "Column to filter on for condition 1. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 1. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_1_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 1 — operator"
+    human_description:
+      en_US: "Operator for condition 1. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 1."
+    form: llm
+  - name: filter_1_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 1 — value"
+    human_description:
+      en_US: "Value for condition 1. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 1. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: filter_2_column
+    type: select
+    required: false
+    options:
+      - value: "name"
+        label: {en_US: "Name"}
+      - value: "keyword"
+        label: {en_US: "Keyword"}
+      - value: "domain"
+        label: {en_US: "Domain"}
+      - value: "universal_name"
+        label: {en_US: "Universal name"}
+      - value: "tagline"
+        label: {en_US: "Tagline"}
+      - value: "description"
+        label: {en_US: "Description"}
+      - value: "industry"
+        label: {en_US: "Industry"}
+      - value: "category"
+        label: {en_US: "Category"}
+      - value: "employee_count"
+        label: {en_US: "Employee count / range"}
+      - value: "country_iso_code"
+        label: {en_US: "HQ country (ISO-2)"}
+      - value: "city"
+        label: {en_US: "HQ city"}
+      - value: "region"
+        label: {en_US: "HQ region/state"}
+      - value: "office_country"
+        label: {en_US: "Office country (ISO-2)"}
+      - value: "office_city"
+        label: {en_US: "Office city"}
+      - value: "office_region"
+        label: {en_US: "Office region"}
+      - value: "founded_year"
+        label: {en_US: "Founded year"}
+      - value: "company_type"
+        label: {en_US: "Company type"}
+      - value: "page_verified"
+        label: {en_US: "Page verified"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "employee_growth_1m"
+        label: {en_US: "Employee growth 1m (%)"}
+      - value: "employee_growth_6m"
+        label: {en_US: "Employee growth 6m (%)"}
+      - value: "employee_growth_12m"
+        label: {en_US: "Employee growth 12m (%)"}
+      - value: "recent_hires_count"
+        label: {en_US: "Recent hires count"}
+      - value: "funding_stage_normalized"
+        label: {en_US: "Funding stage"}
+      - value: "has_funding"
+        label: {en_US: "Has funding"}
+      - value: "last_funding_amount_usd"
+        label: {en_US: "Last funding amount (USD)"}
+      - value: "last_funding_date"
+        label: {en_US: "Last funding date"}
+    label:
+      en_US: "Filter 2 — column"
+    human_description:
+      en_US: "Column to filter on for condition 2. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 2. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_2_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 2 — operator"
+    human_description:
+      en_US: "Operator for condition 2. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 2."
+    form: llm
+  - name: filter_2_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 2 — value"
+    human_description:
+      en_US: "Value for condition 2. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 2. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: filter_3_column
+    type: select
+    required: false
+    options:
+      - value: "name"
+        label: {en_US: "Name"}
+      - value: "keyword"
+        label: {en_US: "Keyword"}
+      - value: "domain"
+        label: {en_US: "Domain"}
+      - value: "universal_name"
+        label: {en_US: "Universal name"}
+      - value: "tagline"
+        label: {en_US: "Tagline"}
+      - value: "description"
+        label: {en_US: "Description"}
+      - value: "industry"
+        label: {en_US: "Industry"}
+      - value: "category"
+        label: {en_US: "Category"}
+      - value: "employee_count"
+        label: {en_US: "Employee count / range"}
+      - value: "country_iso_code"
+        label: {en_US: "HQ country (ISO-2)"}
+      - value: "city"
+        label: {en_US: "HQ city"}
+      - value: "region"
+        label: {en_US: "HQ region/state"}
+      - value: "office_country"
+        label: {en_US: "Office country (ISO-2)"}
+      - value: "office_city"
+        label: {en_US: "Office city"}
+      - value: "office_region"
+        label: {en_US: "Office region"}
+      - value: "founded_year"
+        label: {en_US: "Founded year"}
+      - value: "company_type"
+        label: {en_US: "Company type"}
+      - value: "page_verified"
+        label: {en_US: "Page verified"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "employee_growth_1m"
+        label: {en_US: "Employee growth 1m (%)"}
+      - value: "employee_growth_6m"
+        label: {en_US: "Employee growth 6m (%)"}
+      - value: "employee_growth_12m"
+        label: {en_US: "Employee growth 12m (%)"}
+      - value: "recent_hires_count"
+        label: {en_US: "Recent hires count"}
+      - value: "funding_stage_normalized"
+        label: {en_US: "Funding stage"}
+      - value: "has_funding"
+        label: {en_US: "Has funding"}
+      - value: "last_funding_amount_usd"
+        label: {en_US: "Last funding amount (USD)"}
+      - value: "last_funding_date"
+        label: {en_US: "Last funding date"}
+    label:
+      en_US: "Filter 3 — column"
+    human_description:
+      en_US: "Column to filter on for condition 3. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 3. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_3_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 3 — operator"
+    human_description:
+      en_US: "Operator for condition 3. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 3."
+    form: llm
+  - name: filter_3_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 3 — value"
+    human_description:
+      en_US: "Value for condition 3. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 3. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: filter_4_column
+    type: select
+    required: false
+    options:
+      - value: "name"
+        label: {en_US: "Name"}
+      - value: "keyword"
+        label: {en_US: "Keyword"}
+      - value: "domain"
+        label: {en_US: "Domain"}
+      - value: "universal_name"
+        label: {en_US: "Universal name"}
+      - value: "tagline"
+        label: {en_US: "Tagline"}
+      - value: "description"
+        label: {en_US: "Description"}
+      - value: "industry"
+        label: {en_US: "Industry"}
+      - value: "category"
+        label: {en_US: "Category"}
+      - value: "employee_count"
+        label: {en_US: "Employee count / range"}
+      - value: "country_iso_code"
+        label: {en_US: "HQ country (ISO-2)"}
+      - value: "city"
+        label: {en_US: "HQ city"}
+      - value: "region"
+        label: {en_US: "HQ region/state"}
+      - value: "office_country"
+        label: {en_US: "Office country (ISO-2)"}
+      - value: "office_city"
+        label: {en_US: "Office city"}
+      - value: "office_region"
+        label: {en_US: "Office region"}
+      - value: "founded_year"
+        label: {en_US: "Founded year"}
+      - value: "company_type"
+        label: {en_US: "Company type"}
+      - value: "page_verified"
+        label: {en_US: "Page verified"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "employee_growth_1m"
+        label: {en_US: "Employee growth 1m (%)"}
+      - value: "employee_growth_6m"
+        label: {en_US: "Employee growth 6m (%)"}
+      - value: "employee_growth_12m"
+        label: {en_US: "Employee growth 12m (%)"}
+      - value: "recent_hires_count"
+        label: {en_US: "Recent hires count"}
+      - value: "funding_stage_normalized"
+        label: {en_US: "Funding stage"}
+      - value: "has_funding"
+        label: {en_US: "Has funding"}
+      - value: "last_funding_amount_usd"
+        label: {en_US: "Last funding amount (USD)"}
+      - value: "last_funding_date"
+        label: {en_US: "Last funding date"}
+    label:
+      en_US: "Filter 4 — column"
+    human_description:
+      en_US: "Column to filter on for condition 4. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 4. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_4_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 4 — operator"
+    human_description:
+      en_US: "Operator for condition 4. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 4."
+    form: llm
+  - name: filter_4_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 4 — value"
+    human_description:
+      en_US: "Value for condition 4. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 4. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: filter_5_column
+    type: select
+    required: false
+    options:
+      - value: "name"
+        label: {en_US: "Name"}
+      - value: "keyword"
+        label: {en_US: "Keyword"}
+      - value: "domain"
+        label: {en_US: "Domain"}
+      - value: "universal_name"
+        label: {en_US: "Universal name"}
+      - value: "tagline"
+        label: {en_US: "Tagline"}
+      - value: "description"
+        label: {en_US: "Description"}
+      - value: "industry"
+        label: {en_US: "Industry"}
+      - value: "category"
+        label: {en_US: "Category"}
+      - value: "employee_count"
+        label: {en_US: "Employee count / range"}
+      - value: "country_iso_code"
+        label: {en_US: "HQ country (ISO-2)"}
+      - value: "city"
+        label: {en_US: "HQ city"}
+      - value: "region"
+        label: {en_US: "HQ region/state"}
+      - value: "office_country"
+        label: {en_US: "Office country (ISO-2)"}
+      - value: "office_city"
+        label: {en_US: "Office city"}
+      - value: "office_region"
+        label: {en_US: "Office region"}
+      - value: "founded_year"
+        label: {en_US: "Founded year"}
+      - value: "company_type"
+        label: {en_US: "Company type"}
+      - value: "page_verified"
+        label: {en_US: "Page verified"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "employee_growth_1m"
+        label: {en_US: "Employee growth 1m (%)"}
+      - value: "employee_growth_6m"
+        label: {en_US: "Employee growth 6m (%)"}
+      - value: "employee_growth_12m"
+        label: {en_US: "Employee growth 12m (%)"}
+      - value: "recent_hires_count"
+        label: {en_US: "Recent hires count"}
+      - value: "funding_stage_normalized"
+        label: {en_US: "Funding stage"}
+      - value: "has_funding"
+        label: {en_US: "Has funding"}
+      - value: "last_funding_amount_usd"
+        label: {en_US: "Last funding amount (USD)"}
+      - value: "last_funding_date"
+        label: {en_US: "Last funding date"}
+    label:
+      en_US: "Filter 5 — column"
+    human_description:
+      en_US: "Column to filter on for condition 5. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 5. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_5_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 5 — operator"
+    human_description:
+      en_US: "Operator for condition 5. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 5."
+    form: llm
+  - name: filter_5_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 5 — value"
+    human_description:
+      en_US: "Value for condition 5. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 5. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: match
+    type: select
+    required: false
+    default: "and"
+    options:
+      - value: "and"
+        label: {en_US: "AND (all conditions must match)"}
+      - value: "or"
+        label: {en_US: "OR (any condition matches)"}
+    label:
+      en_US: Match logic
+    human_description:
+      en_US: How to combine the filter slots below.
+    llm_description: Combine the filter slots with AND or OR. Default AND.
+    form: llm
+  - name: advanced_filters
+    type: string
+    required: false
+    label:
+      en_US: Advanced filters (JSON)
+    human_description:
+      en_US: 'Optional raw JSON filter group for nested logic, e.g. {"op":"or","conditions":[...]}. Combined with AND alongside the slots.'
+    llm_description: 'Optional JSON filter group {"op":"and"|"or","conditions":[...]} for nested logic. Combined with AND alongside the slots.'
+    form: llm
+  - name: count
+    type: number
+    required: false
+    default: 25
+    min: 1
+    max: 1000
+    label:
+      en_US: Count
+    human_description:
+      en_US: Number of results to return (max 1000).
+    llm_description: Number of results to return, 1-1000.
+    form: llm
+  - name: offset
+    type: number
+    required: false
+    default: 0
+    min: 0
+    label:
+      en_US: Offset
+    human_description:
+      en_US: Number of results to skip (pagination).
+    llm_description: Offset for pagination.
+    form: form
+  - name: enrich_live
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Live enrichment
+    human_description:
+      en_US: Fresh live data (1.5 credits/result) instead of cached (0.75 credits/result).
+    llm_description: If true, fresh live data at higher credit cost. Default false (cached).
+    form: form
+extra:
+  python:
+    source: tools/search_company.py

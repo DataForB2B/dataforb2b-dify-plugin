@@ -1,0 +1,22 @@
+identity:
+  name: enrich_company
+  author: dataforb2b
+  label:
+    en_US: Enrich Company
+description:
+  human:
+    en_US: Enrich a company from its name, domain, URL or id — full data including size, locations, funding rounds, investors and growth.
+  llm: Enrich a single company. Provide a `company_identifier` (universal name/slug, company URL, or encoded org_ id). Returns full company data including size, funding and growth.
+parameters:
+  - name: company_identifier
+    type: string
+    required: true
+    label:
+      en_US: Company identifier
+    human_description:
+      en_US: Universal name (e.g. "google"), company URL, or encoded org_ id.
+    llm_description: The company to enrich. Accepts a universal name/slug (e.g. "google"), a full company URL, a short URL, or an encoded id (org_xxx).
+    form: llm
+extra:
+  python:
+    source: tools/enrich_company.py

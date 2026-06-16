@@ -1,0 +1,710 @@
+identity:
+  name: search_people
+  author: dataforb2b
+  label:
+    en_US: Search People
+description:
+  human:
+    en_US: Search professional profiles. Build conditions with the filter slots (column + operator + value), combined with AND or OR.
+  llm: Search B2B professional profiles using up to 5 filter slots; each slot is a column + operator + value, combined with the match logic (AND/OR). Use advanced_filters for nested logic.
+parameters:
+  - name: filter_1_column
+    type: select
+    required: false
+    options:
+      - value: "current_title"
+        label: {en_US: "Current title"}
+      - value: "current_company"
+        label: {en_US: "Current company"}
+      - value: "current_company_industry"
+        label: {en_US: "Current company industry"}
+      - value: "current_company_category"
+        label: {en_US: "Current company category"}
+      - value: "current_company_size"
+        label: {en_US: "Current company size"}
+      - value: "current_company_id"
+        label: {en_US: "Current company id"}
+      - value: "current_employment_type"
+        label: {en_US: "Current employment type"}
+      - value: "current_company_has_funding"
+        label: {en_US: "Current company has funding"}
+      - value: "current_company_funding_stage"
+        label: {en_US: "Current company funding stage"}
+      - value: "current_company_investor"
+        label: {en_US: "Current company investor"}
+      - value: "current_job_location"
+        label: {en_US: "Current job location"}
+      - value: "years_in_current_position"
+        label: {en_US: "Years in current position"}
+      - value: "years_at_current_company"
+        label: {en_US: "Years at current company"}
+      - value: "past_company"
+        label: {en_US: "Past company"}
+      - value: "past_title"
+        label: {en_US: "Past title"}
+      - value: "past_company_industry"
+        label: {en_US: "Past company industry"}
+      - value: "past_company_size"
+        label: {en_US: "Past company size"}
+      - value: "past_company_id"
+        label: {en_US: "Past company id"}
+      - value: "past_employment_type"
+        label: {en_US: "Past employment type"}
+      - value: "past_job_location"
+        label: {en_US: "Past job location"}
+      - value: "years_at_past_company"
+        label: {en_US: "Years at past company"}
+      - value: "skill"
+        label: {en_US: "Skill"}
+      - value: "school"
+        label: {en_US: "School"}
+      - value: "degree"
+        label: {en_US: "Degree"}
+      - value: "degree_level"
+        label: {en_US: "Degree level"}
+      - value: "field_of_study"
+        label: {en_US: "Field of study"}
+      - value: "language"
+        label: {en_US: "Language"}
+      - value: "language_iso"
+        label: {en_US: "Language ISO code"}
+      - value: "language_proficiency"
+        label: {en_US: "Language proficiency"}
+      - value: "certification"
+        label: {en_US: "Certification"}
+      - value: "certification_authority"
+        label: {en_US: "Certification authority"}
+      - value: "years_of_experience"
+        label: {en_US: "Years of experience"}
+      - value: "num_total_jobs"
+        label: {en_US: "Number of total jobs"}
+      - value: "is_currently_employed"
+        label: {en_US: "Is currently employed"}
+      - value: "first_name"
+        label: {en_US: "First name"}
+      - value: "last_name"
+        label: {en_US: "Last name"}
+      - value: "profile_location"
+        label: {en_US: "Profile location"}
+      - value: "profile_country"
+        label: {en_US: "Profile country (ISO-2)"}
+      - value: "profile_industry"
+        label: {en_US: "Profile industry"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "keyword"
+        label: {en_US: "Keyword (headline)"}
+    label:
+      en_US: "Filter 1 — column"
+    human_description:
+      en_US: "Column to filter on for condition 1. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 1. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_1_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 1 — operator"
+    human_description:
+      en_US: "Operator for condition 1. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 1."
+    form: llm
+  - name: filter_1_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 1 — value"
+    human_description:
+      en_US: "Value for condition 1. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 1. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: filter_2_column
+    type: select
+    required: false
+    options:
+      - value: "current_title"
+        label: {en_US: "Current title"}
+      - value: "current_company"
+        label: {en_US: "Current company"}
+      - value: "current_company_industry"
+        label: {en_US: "Current company industry"}
+      - value: "current_company_category"
+        label: {en_US: "Current company category"}
+      - value: "current_company_size"
+        label: {en_US: "Current company size"}
+      - value: "current_company_id"
+        label: {en_US: "Current company id"}
+      - value: "current_employment_type"
+        label: {en_US: "Current employment type"}
+      - value: "current_company_has_funding"
+        label: {en_US: "Current company has funding"}
+      - value: "current_company_funding_stage"
+        label: {en_US: "Current company funding stage"}
+      - value: "current_company_investor"
+        label: {en_US: "Current company investor"}
+      - value: "current_job_location"
+        label: {en_US: "Current job location"}
+      - value: "years_in_current_position"
+        label: {en_US: "Years in current position"}
+      - value: "years_at_current_company"
+        label: {en_US: "Years at current company"}
+      - value: "past_company"
+        label: {en_US: "Past company"}
+      - value: "past_title"
+        label: {en_US: "Past title"}
+      - value: "past_company_industry"
+        label: {en_US: "Past company industry"}
+      - value: "past_company_size"
+        label: {en_US: "Past company size"}
+      - value: "past_company_id"
+        label: {en_US: "Past company id"}
+      - value: "past_employment_type"
+        label: {en_US: "Past employment type"}
+      - value: "past_job_location"
+        label: {en_US: "Past job location"}
+      - value: "years_at_past_company"
+        label: {en_US: "Years at past company"}
+      - value: "skill"
+        label: {en_US: "Skill"}
+      - value: "school"
+        label: {en_US: "School"}
+      - value: "degree"
+        label: {en_US: "Degree"}
+      - value: "degree_level"
+        label: {en_US: "Degree level"}
+      - value: "field_of_study"
+        label: {en_US: "Field of study"}
+      - value: "language"
+        label: {en_US: "Language"}
+      - value: "language_iso"
+        label: {en_US: "Language ISO code"}
+      - value: "language_proficiency"
+        label: {en_US: "Language proficiency"}
+      - value: "certification"
+        label: {en_US: "Certification"}
+      - value: "certification_authority"
+        label: {en_US: "Certification authority"}
+      - value: "years_of_experience"
+        label: {en_US: "Years of experience"}
+      - value: "num_total_jobs"
+        label: {en_US: "Number of total jobs"}
+      - value: "is_currently_employed"
+        label: {en_US: "Is currently employed"}
+      - value: "first_name"
+        label: {en_US: "First name"}
+      - value: "last_name"
+        label: {en_US: "Last name"}
+      - value: "profile_location"
+        label: {en_US: "Profile location"}
+      - value: "profile_country"
+        label: {en_US: "Profile country (ISO-2)"}
+      - value: "profile_industry"
+        label: {en_US: "Profile industry"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "keyword"
+        label: {en_US: "Keyword (headline)"}
+    label:
+      en_US: "Filter 2 — column"
+    human_description:
+      en_US: "Column to filter on for condition 2. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 2. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_2_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 2 — operator"
+    human_description:
+      en_US: "Operator for condition 2. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 2."
+    form: llm
+  - name: filter_2_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 2 — value"
+    human_description:
+      en_US: "Value for condition 2. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 2. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: filter_3_column
+    type: select
+    required: false
+    options:
+      - value: "current_title"
+        label: {en_US: "Current title"}
+      - value: "current_company"
+        label: {en_US: "Current company"}
+      - value: "current_company_industry"
+        label: {en_US: "Current company industry"}
+      - value: "current_company_category"
+        label: {en_US: "Current company category"}
+      - value: "current_company_size"
+        label: {en_US: "Current company size"}
+      - value: "current_company_id"
+        label: {en_US: "Current company id"}
+      - value: "current_employment_type"
+        label: {en_US: "Current employment type"}
+      - value: "current_company_has_funding"
+        label: {en_US: "Current company has funding"}
+      - value: "current_company_funding_stage"
+        label: {en_US: "Current company funding stage"}
+      - value: "current_company_investor"
+        label: {en_US: "Current company investor"}
+      - value: "current_job_location"
+        label: {en_US: "Current job location"}
+      - value: "years_in_current_position"
+        label: {en_US: "Years in current position"}
+      - value: "years_at_current_company"
+        label: {en_US: "Years at current company"}
+      - value: "past_company"
+        label: {en_US: "Past company"}
+      - value: "past_title"
+        label: {en_US: "Past title"}
+      - value: "past_company_industry"
+        label: {en_US: "Past company industry"}
+      - value: "past_company_size"
+        label: {en_US: "Past company size"}
+      - value: "past_company_id"
+        label: {en_US: "Past company id"}
+      - value: "past_employment_type"
+        label: {en_US: "Past employment type"}
+      - value: "past_job_location"
+        label: {en_US: "Past job location"}
+      - value: "years_at_past_company"
+        label: {en_US: "Years at past company"}
+      - value: "skill"
+        label: {en_US: "Skill"}
+      - value: "school"
+        label: {en_US: "School"}
+      - value: "degree"
+        label: {en_US: "Degree"}
+      - value: "degree_level"
+        label: {en_US: "Degree level"}
+      - value: "field_of_study"
+        label: {en_US: "Field of study"}
+      - value: "language"
+        label: {en_US: "Language"}
+      - value: "language_iso"
+        label: {en_US: "Language ISO code"}
+      - value: "language_proficiency"
+        label: {en_US: "Language proficiency"}
+      - value: "certification"
+        label: {en_US: "Certification"}
+      - value: "certification_authority"
+        label: {en_US: "Certification authority"}
+      - value: "years_of_experience"
+        label: {en_US: "Years of experience"}
+      - value: "num_total_jobs"
+        label: {en_US: "Number of total jobs"}
+      - value: "is_currently_employed"
+        label: {en_US: "Is currently employed"}
+      - value: "first_name"
+        label: {en_US: "First name"}
+      - value: "last_name"
+        label: {en_US: "Last name"}
+      - value: "profile_location"
+        label: {en_US: "Profile location"}
+      - value: "profile_country"
+        label: {en_US: "Profile country (ISO-2)"}
+      - value: "profile_industry"
+        label: {en_US: "Profile industry"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "keyword"
+        label: {en_US: "Keyword (headline)"}
+    label:
+      en_US: "Filter 3 — column"
+    human_description:
+      en_US: "Column to filter on for condition 3. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 3. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_3_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 3 — operator"
+    human_description:
+      en_US: "Operator for condition 3. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 3."
+    form: llm
+  - name: filter_3_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 3 — value"
+    human_description:
+      en_US: "Value for condition 3. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 3. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: filter_4_column
+    type: select
+    required: false
+    options:
+      - value: "current_title"
+        label: {en_US: "Current title"}
+      - value: "current_company"
+        label: {en_US: "Current company"}
+      - value: "current_company_industry"
+        label: {en_US: "Current company industry"}
+      - value: "current_company_category"
+        label: {en_US: "Current company category"}
+      - value: "current_company_size"
+        label: {en_US: "Current company size"}
+      - value: "current_company_id"
+        label: {en_US: "Current company id"}
+      - value: "current_employment_type"
+        label: {en_US: "Current employment type"}
+      - value: "current_company_has_funding"
+        label: {en_US: "Current company has funding"}
+      - value: "current_company_funding_stage"
+        label: {en_US: "Current company funding stage"}
+      - value: "current_company_investor"
+        label: {en_US: "Current company investor"}
+      - value: "current_job_location"
+        label: {en_US: "Current job location"}
+      - value: "years_in_current_position"
+        label: {en_US: "Years in current position"}
+      - value: "years_at_current_company"
+        label: {en_US: "Years at current company"}
+      - value: "past_company"
+        label: {en_US: "Past company"}
+      - value: "past_title"
+        label: {en_US: "Past title"}
+      - value: "past_company_industry"
+        label: {en_US: "Past company industry"}
+      - value: "past_company_size"
+        label: {en_US: "Past company size"}
+      - value: "past_company_id"
+        label: {en_US: "Past company id"}
+      - value: "past_employment_type"
+        label: {en_US: "Past employment type"}
+      - value: "past_job_location"
+        label: {en_US: "Past job location"}
+      - value: "years_at_past_company"
+        label: {en_US: "Years at past company"}
+      - value: "skill"
+        label: {en_US: "Skill"}
+      - value: "school"
+        label: {en_US: "School"}
+      - value: "degree"
+        label: {en_US: "Degree"}
+      - value: "degree_level"
+        label: {en_US: "Degree level"}
+      - value: "field_of_study"
+        label: {en_US: "Field of study"}
+      - value: "language"
+        label: {en_US: "Language"}
+      - value: "language_iso"
+        label: {en_US: "Language ISO code"}
+      - value: "language_proficiency"
+        label: {en_US: "Language proficiency"}
+      - value: "certification"
+        label: {en_US: "Certification"}
+      - value: "certification_authority"
+        label: {en_US: "Certification authority"}
+      - value: "years_of_experience"
+        label: {en_US: "Years of experience"}
+      - value: "num_total_jobs"
+        label: {en_US: "Number of total jobs"}
+      - value: "is_currently_employed"
+        label: {en_US: "Is currently employed"}
+      - value: "first_name"
+        label: {en_US: "First name"}
+      - value: "last_name"
+        label: {en_US: "Last name"}
+      - value: "profile_location"
+        label: {en_US: "Profile location"}
+      - value: "profile_country"
+        label: {en_US: "Profile country (ISO-2)"}
+      - value: "profile_industry"
+        label: {en_US: "Profile industry"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "keyword"
+        label: {en_US: "Keyword (headline)"}
+    label:
+      en_US: "Filter 4 — column"
+    human_description:
+      en_US: "Column to filter on for condition 4. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 4. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_4_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 4 — operator"
+    human_description:
+      en_US: "Operator for condition 4. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 4."
+    form: llm
+  - name: filter_4_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 4 — value"
+    human_description:
+      en_US: "Value for condition 4. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 4. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: filter_5_column
+    type: select
+    required: false
+    options:
+      - value: "current_title"
+        label: {en_US: "Current title"}
+      - value: "current_company"
+        label: {en_US: "Current company"}
+      - value: "current_company_industry"
+        label: {en_US: "Current company industry"}
+      - value: "current_company_category"
+        label: {en_US: "Current company category"}
+      - value: "current_company_size"
+        label: {en_US: "Current company size"}
+      - value: "current_company_id"
+        label: {en_US: "Current company id"}
+      - value: "current_employment_type"
+        label: {en_US: "Current employment type"}
+      - value: "current_company_has_funding"
+        label: {en_US: "Current company has funding"}
+      - value: "current_company_funding_stage"
+        label: {en_US: "Current company funding stage"}
+      - value: "current_company_investor"
+        label: {en_US: "Current company investor"}
+      - value: "current_job_location"
+        label: {en_US: "Current job location"}
+      - value: "years_in_current_position"
+        label: {en_US: "Years in current position"}
+      - value: "years_at_current_company"
+        label: {en_US: "Years at current company"}
+      - value: "past_company"
+        label: {en_US: "Past company"}
+      - value: "past_title"
+        label: {en_US: "Past title"}
+      - value: "past_company_industry"
+        label: {en_US: "Past company industry"}
+      - value: "past_company_size"
+        label: {en_US: "Past company size"}
+      - value: "past_company_id"
+        label: {en_US: "Past company id"}
+      - value: "past_employment_type"
+        label: {en_US: "Past employment type"}
+      - value: "past_job_location"
+        label: {en_US: "Past job location"}
+      - value: "years_at_past_company"
+        label: {en_US: "Years at past company"}
+      - value: "skill"
+        label: {en_US: "Skill"}
+      - value: "school"
+        label: {en_US: "School"}
+      - value: "degree"
+        label: {en_US: "Degree"}
+      - value: "degree_level"
+        label: {en_US: "Degree level"}
+      - value: "field_of_study"
+        label: {en_US: "Field of study"}
+      - value: "language"
+        label: {en_US: "Language"}
+      - value: "language_iso"
+        label: {en_US: "Language ISO code"}
+      - value: "language_proficiency"
+        label: {en_US: "Language proficiency"}
+      - value: "certification"
+        label: {en_US: "Certification"}
+      - value: "certification_authority"
+        label: {en_US: "Certification authority"}
+      - value: "years_of_experience"
+        label: {en_US: "Years of experience"}
+      - value: "num_total_jobs"
+        label: {en_US: "Number of total jobs"}
+      - value: "is_currently_employed"
+        label: {en_US: "Is currently employed"}
+      - value: "first_name"
+        label: {en_US: "First name"}
+      - value: "last_name"
+        label: {en_US: "Last name"}
+      - value: "profile_location"
+        label: {en_US: "Profile location"}
+      - value: "profile_country"
+        label: {en_US: "Profile country (ISO-2)"}
+      - value: "profile_industry"
+        label: {en_US: "Profile industry"}
+      - value: "follower_count"
+        label: {en_US: "Follower count"}
+      - value: "keyword"
+        label: {en_US: "Keyword (headline)"}
+    label:
+      en_US: "Filter 5 — column"
+    human_description:
+      en_US: "Column to filter on for condition 5. Leave the whole slot empty to skip it."
+    llm_description: "Column for filter slot 5. Each slot is column + operator + value; leave a slot empty to skip."
+    form: llm
+  - name: filter_5_operator
+    type: select
+    required: false
+    default: "="
+    options:
+      - value: "="
+        label: {en_US: "= (equals)"}
+      - value: "like"
+        label: {en_US: "like (contains)"}
+      - value: "in"
+        label: {en_US: "in (any of — comma separated)"}
+      - value: ">"
+        label: {en_US: "> (greater than)"}
+      - value: ">="
+        label: {en_US: ">= (at least)"}
+      - value: "<"
+        label: {en_US: "< (less than)"}
+      - value: "<="
+        label: {en_US: "<= (at most)"}
+      - value: "between"
+        label: {en_US: "between (min,max)"}
+    label:
+      en_US: "Filter 5 — operator"
+    human_description:
+      en_US: "Operator for condition 5. Use 'in' for a comma-separated list, 'between' for 'min,max'."
+    llm_description: "Operator for filter slot 5."
+    form: llm
+  - name: filter_5_value
+    type: string
+    required: false
+    label:
+      en_US: "Filter 5 — value"
+    human_description:
+      en_US: "Value for condition 5. For 'in' use comma-separated values (e.g. US, GB, FR); for 'between' use 'min,max' (e.g. 3,7)."
+    llm_description: "Value for filter slot 5. Comma-separated list for 'in'; 'min,max' for 'between'."
+    form: llm
+  - name: match
+    type: select
+    required: false
+    default: "and"
+    options:
+      - value: "and"
+        label: {en_US: "AND (all conditions must match)"}
+      - value: "or"
+        label: {en_US: "OR (any condition matches)"}
+    label:
+      en_US: Match logic
+    human_description:
+      en_US: How to combine the filter slots below.
+    llm_description: Combine the filter slots with AND or OR. Default AND.
+    form: llm
+  - name: advanced_filters
+    type: string
+    required: false
+    label:
+      en_US: Advanced filters (JSON)
+    human_description:
+      en_US: 'Optional raw JSON filter group for nested logic, e.g. {"op":"or","conditions":[...]}. Combined with AND alongside the slots.'
+    llm_description: 'Optional JSON filter group {"op":"and"|"or","conditions":[...]} for nested logic. Combined with AND alongside the slots.'
+    form: llm
+  - name: count
+    type: number
+    required: false
+    default: 25
+    min: 1
+    max: 1000
+    label:
+      en_US: Count
+    human_description:
+      en_US: Number of results to return (max 1000).
+    llm_description: Number of results to return, 1-1000.
+    form: llm
+  - name: offset
+    type: number
+    required: false
+    default: 0
+    min: 0
+    label:
+      en_US: Offset
+    human_description:
+      en_US: Number of results to skip (pagination).
+    llm_description: Offset for pagination.
+    form: form
+  - name: enrich_live
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Live enrichment
+    human_description:
+      en_US: Fresh live data (1.5 credits/result) instead of cached (0.75 credits/result).
+    llm_description: If true, fresh live data at higher credit cost. Default false (cached).
+    form: form
+extra:
+  python:
+    source: tools/search_people.py

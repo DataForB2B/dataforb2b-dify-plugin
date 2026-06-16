@@ -1,0 +1,72 @@
+identity:
+  name: enrich_profile
+  author: dataforb2b
+  label:
+    en_US: Enrich Profile
+description:
+  human:
+    en_US: Enrich a person from a profile URL or id — full profile data, professional/personal email, phone number, and GitHub profile. You only pay for the data types you request.
+  llm: Enrich a single person. Provide a `profile_identifier` (profile URL, public_id, or encoded prof_ id) and toggle which data to fetch (profile, work email, personal email, phone, GitHub). At least one enrich_* flag must be true.
+parameters:
+  - name: profile_identifier
+    type: string
+    required: true
+    label:
+      en_US: Profile identifier
+    human_description:
+      en_US: Profile URL, public_id, member identity, URN, or encoded prof_ id.
+    llm_description: The person to enrich. Accepts a full profile URL, short URL, public_id, member identity, URN, or encoded id (prof_xxx).
+    form: llm
+  - name: enrich_profile
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Full profile
+    human_description:
+      en_US: Full profile data (experience, education, skills...). 1.5 credits.
+    llm_description: Fetch full profile data. 1.5 credits. Default true.
+    form: llm
+  - name: enrich_work_email
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Professional email
+    human_description:
+      en_US: Find the professional email. 3 credits.
+    llm_description: Find the professional/work email. 3 credits.
+    form: llm
+  - name: enrich_personal_email
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Personal email
+    human_description:
+      en_US: Find the personal email. 1 credit.
+    llm_description: Find the personal email. 1 credit.
+    form: llm
+  - name: enrich_phone
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Phone number
+    human_description:
+      en_US: Find the phone number. 10 credits.
+    llm_description: Find the phone number. 10 credits.
+    form: llm
+  - name: enrich_github
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: GitHub profile
+    human_description:
+      en_US: Fetch GitHub profile data. 1 credit. Requires the profile to have a GitHub link.
+    llm_description: Fetch GitHub profile data (repos, contributions). 1 credit. Requires a GitHub link on the profile.
+    form: llm
+extra:
+  python:
+    source: tools/enrich_profile.py

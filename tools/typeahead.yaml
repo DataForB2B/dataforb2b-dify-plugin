@@ -1,0 +1,66 @@
+identity:
+  name: typeahead
+  author: dataforb2b
+  label:
+    en_US: Typeahead
+description:
+  human:
+    en_US: Autocomplete the exact stored value for any search filter — companies, industries, categories, locations, schools, titles, skills, investors. Use it to resolve a value before filtering, so your search matches the database.
+  llm: Resolve the canonical value for a search filter via autocomplete. Pass type (what to autocomplete) and q (the partial text). Returns ranked values you can drop directly into Search People / Search Companies filters. Use this when a search returns few/no results to find the exact stored value.
+parameters:
+  - name: type
+    type: select
+    required: true
+    options:
+      - value: "company"
+        label: {en_US: "Company (returns org_id)"}
+      - value: "people_industry"
+        label: {en_US: "People industry (capitalized)"}
+      - value: "company_industry"
+        label: {en_US: "Company industry (lowercase)"}
+      - value: "category"
+        label: {en_US: "Category (lowercase)"}
+      - value: "location"
+        label: {en_US: "Location (profiles)"}
+      - value: "city"
+        label: {en_US: "City (companies)"}
+      - value: "region"
+        label: {en_US: "Region/state (companies)"}
+      - value: "school"
+        label: {en_US: "School"}
+      - value: "title"
+        label: {en_US: "Job title"}
+      - value: "skill"
+        label: {en_US: "Skill"}
+      - value: "investor"
+        label: {en_US: "Investor"}
+    label:
+      en_US: Type
+    human_description:
+      en_US: The category to autocomplete.
+    llm_description: The category to autocomplete (company, people_industry, company_industry, category, location, city, region, school, title, skill, investor).
+    form: llm
+  - name: q
+    type: string
+    required: true
+    label:
+      en_US: Query
+    human_description:
+      en_US: 'Partial text to autocomplete (1-100 characters), e.g. "pyth".'
+    llm_description: Partial text to autocomplete (1-100 chars).
+    form: llm
+  - name: limit
+    type: number
+    required: false
+    default: 20
+    min: 1
+    max: 20
+    label:
+      en_US: Limit
+    human_description:
+      en_US: Maximum number of results (1-20).
+    llm_description: Maximum number of results, 1-20.
+    form: llm
+extra:
+  python:
+    source: tools/typeahead.py

@@ -1,0 +1,33 @@
+identity:
+  author: dataforb2b
+  name: dataforb2b
+  label:
+    en_US: DataForB2B
+  description:
+    en_US: 'Power your sales or recruiting AI agent with live B2B data. DataForB2B is a people and company search API with 70+ filters including job title, skills, company size, LinkedIn URL, funding stage, investor, past employers, certifications, years of experience, GitHub repositories, languages and more.'
+  icon: icon.png
+  tags:
+    - search
+    - business
+    - productivity
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: API Key
+    placeholder:
+      en_US: Enter your DataForB2B API key
+    help:
+      en_US: Get your API key from app.dataforb2b.ai (Settings > API Keys).
+    url: https://app.dataforb2b.ai
+tools:
+  - tools/search_people.yaml
+  - tools/search_company.yaml
+  - tools/enrich_profile.yaml
+  - tools/enrich_company.yaml
+  - tools/reasoning_search.yaml
+  - tools/typeahead.yaml
+extra:
+  python:
+    source: provider/dataforb2b.py

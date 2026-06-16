@@ -1,0 +1,79 @@
+identity:
+  name: reasoning_search
+  author: dataforb2b
+  label:
+    en_US: Reasoning Search
+description:
+  human:
+    en_US: Describe who you are looking for in plain language. An AI agent probes the database, builds the best filters, and runs the search. It may ask clarifying questions you can answer back with the same session.
+  llm: 'Natural-language B2B search. Pass a `query` describing the target people or companies; an AI agent builds and runs the optimal search. If the response status is "needs_input", answer its questions by calling again with the returned `session_id` and an `answers` object mapping question_id to answer.'
+parameters:
+  - name: query
+    type: string
+    required: false
+    label:
+      en_US: Query
+    human_description:
+      en_US: 'Plain-language description, e.g. "Heads of Sales at French fintech scale-ups". Max 3000 chars. Required on the first call.'
+    llm_description: Natural-language description of the people or companies to find (max 3000 chars). Required on the first call; on a follow-up you may instead refine with session_id + a new query.
+    form: llm
+  - name: category
+    type: select
+    required: false
+    default: people
+    options:
+      - value: people
+        label:
+          en_US: People
+      - value: companies
+        label:
+          en_US: Companies
+    label:
+      en_US: Category
+    human_description:
+      en_US: Whether to search people or companies.
+    llm_description: What to search, "people" or "companies".
+    form: llm
+  - name: max_results
+    type: number
+    required: false
+    default: 25
+    min: 1
+    max: 100
+    label:
+      en_US: Max results
+    human_description:
+      en_US: Number of results for the final search (1-100).
+    llm_description: Number of results for the final search, 1-100.
+    form: llm
+  - name: session_id
+    type: string
+    required: false
+    label:
+      en_US: Session ID
+    human_description:
+      en_US: Session id returned by a previous call. Send it back to answer questions or refine the same search.
+    llm_description: Session id from a previous response. Use it with `answers` to answer clarifying questions, or with a new `query` to refine.
+    form: llm
+  - name: answers
+    type: string
+    required: false
+    label:
+      en_US: Answers (JSON)
+    human_description:
+      en_US: 'Answers to a needs_input turn as JSON, e.g. {"company_size":"201-500"}. Requires session_id.'
+    llm_description: 'JSON object mapping question ids to answers, e.g. {"company_size":"201-500"}. Only used together with session_id to resolve a needs_input turn.'
+    form: llm
+  - name: enrich_live
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Live enrichment
+    human_description:
+      en_US: Fresh live data (1.5 credits/result) instead of cached (0.75 credits/result).
+    llm_description: If true, results are enriched with fresh live data at higher credit cost. Default false.
+    form: form
+extra:
+  python:
+    source: tools/reasoning_search.py
