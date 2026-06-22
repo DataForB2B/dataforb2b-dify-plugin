@@ -9,7 +9,7 @@ identity:
   tags:
     - search
     - business
-    - productivity
+    - social
 credentials_for_provider:
   api_key:
     type: secret-input

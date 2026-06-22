@@ -2,11 +2,11 @@ identity:
   name: enrich_profile
   author: dataforb2b
   label:
-    en_US: Enrich Profile
+    en_US: Enrich LinkedIn Profile
 description:
   human:
-    en_US: Enrich a person from a profile URL or id — full profile data, professional/personal email, phone number, and GitHub profile. You only pay for the data types you request.
-  llm: Enrich a single person. Provide a `profile_identifier` (profile URL, public_id, or encoded prof_ id) and toggle which data to fetch (profile, work email, personal email, phone, GitHub). At least one enrich_* flag must be true.
+    en_US: Enrich a person from a LinkedIn profile URL or ID — full profile data, professional/personal email, phone number, and GitHub profile. You only pay for the data types you request.
+  llm: Enrich a single person. Provide a `profile_identifier` (a LinkedIn profile URL, public_id, or encoded prof_ id) and toggle which data to fetch (profile, work email, personal email, phone, GitHub). At least one enrich_* flag must be true.
 parameters:
   - name: profile_identifier
     type: string

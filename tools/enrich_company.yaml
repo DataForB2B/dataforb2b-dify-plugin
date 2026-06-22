@@ -5,7 +5,7 @@ identity:
     en_US: Enrich Company
 description:
   human:
-    en_US: Enrich a company from its name, domain, URL or id — full data including size, locations, funding rounds, investors and growth.
+    en_US: Enrich a company from its name, domain, LinkedIn URL or id — full data including size, locations, funding rounds, investors and growth.
   llm: Enrich a single company. Provide a `company_identifier` (universal name/slug, company URL, or encoded org_ id). Returns full company data including size, funding and growth.
 parameters:
   - name: company_identifier

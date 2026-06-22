@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 type: plugin
 author: dataforb2b
 name: dataforb2b
@@ -17,7 +17,7 @@ plugins:
   tools:
     - provider/dataforb2b.yaml
 meta:
-  version: 0.0.1
+  version: 0.0.2
   arch:
     - amd64
     - arm64
@@ -29,4 +29,4 @@ privacy: PRIVACY.md
 tags:
   - search
   - business
-  - productivity
+  - social
